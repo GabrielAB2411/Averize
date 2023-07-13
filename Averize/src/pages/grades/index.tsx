@@ -1,9 +1,19 @@
-import { View, Text } from "react-native";
+import { Box, Text, Heading } from 'native-base'
+import { useRoute, RouteProp } from '@react-navigation/native';
+import { StackParamList } from '../../types/StackNavigation';
+
+type RouteProps = RouteProp<StackParamList, 'grades'>
 
 export default function Grades() {
+    const route = useRoute<RouteProps>()
+    
     return (
-        <View>
-            <Text>Notas</Text>
-        </View>
+        <Box
+            flex={1}
+            justifyContent={'center'}
+            alignItems={'center'}
+        >
+            
+        </Box>
     )
 }

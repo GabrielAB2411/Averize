@@ -1,7 +1,10 @@
-import { Routes } from "./src/routes";
+import { NativeBaseProvider } from 'native-base';
+import { Routes } from './src/routes';
 
 export default function App() {
   return (
-    <Routes/>
+    <NativeBaseProvider>
+      <Routes />
+    </NativeBaseProvider>
   )
 }

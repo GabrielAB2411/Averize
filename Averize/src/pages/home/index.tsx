@@ -1,20 +1,33 @@
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { StackParamList } from "../../types/StackNavigation";
-import { Container,  Title } from "./styles";
-
-type NavigationProps = StackNavigationProp<StackParamList>
+import { Box, FlatList, Heading, Text } from 'native-base'
+import { ListItem } from '../../components';
+import { useHomeScreen } from '../../hooks/useHomeScreen';
 
 export default function Home() {
-    const navigation = useNavigation<NavigationProps>()
-
-    function nextPage() {
-        navigation.navigate('grades')
-    }
+    const { courses, nextPage } = useHomeScreen()
 
     return (
-        <Container>
-            <Title>Em qual curso você está matriculado?</Title>
-        </Container>
+        <Box
+            backgroundColor={'white'}
+            flex={1}
+            justifyContent={'center'}
+            alignItems={'center'}
+            textAlign={'center'}
+        >
+            <Box width={'2/3'}>
+                <Heading fontSize={'2xl'} marginBottom={5} textAlign={'center'}> 
+                    Qual é o seu curso?
+                </Heading>
+                <FlatList
+                    data={courses}
+                    renderItem={({ item }) => 
+                        <ListItem 
+                            item={item} 
+                            onClick={() => nextPage(item)} 
+                        />
+                    }
+                    keyExtractor={item => item.id}
+                />
+            </Box>
+        </Box>
     )
 }
