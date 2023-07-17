@@ -20,8 +20,9 @@ export function useSemestersScreen(type: string){
 
     function nextPage(item: any) {
         const course = {
-            type: type,
+            course: type,
             semester: item.name,
+            semesterId: item.id
         }
         navigation.navigate('grades', course)
     }

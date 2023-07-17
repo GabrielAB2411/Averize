@@ -6,16 +6,16 @@ type ListItemProps = {
     onClick?: () => void
 }
 
-export function ListItem({item, onClick}: ListItemProps) {
+export function ListItem({ item, onClick }: ListItemProps) {
     return (
         <Box
             flex={1}
             flexDirection={'column'}
             padding={1}
             margin={1}
-            borderBottomWidth='1'    
+            borderBottomWidth='1'
         >
-            <Button 
+            <Button
                 onPress={onClick}
                 backgroundColor={'white'}
                 _text={{
