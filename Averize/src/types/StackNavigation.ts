@@ -10,5 +10,11 @@ export type StackParamList = {
     },
     ratings: {
         subject: string,
-    }
+    },
+    averages: {
+        subject: string,
+        M1: number,
+        M2: number,
+        MF: number,  
+    },
 }
