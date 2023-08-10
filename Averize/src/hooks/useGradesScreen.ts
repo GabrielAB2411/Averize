@@ -327,7 +327,7 @@ export function useGradesScreen(course: string, semesterId: string) {
             ]
         },
         {
-            type: 'ECA',
+            course: 'ECA',
             subjects: [
                 //1º semestre
                 {
@@ -662,7 +662,7 @@ export function useGradesScreen(course: string, semesterId: string) {
             ]
         },
         {
-            type: 'EA',
+            course: 'EA',
             subjects:
             [
                 //1º semestre
@@ -993,7 +993,7 @@ export function useGradesScreen(course: string, semesterId: string) {
             ]
         },
         {
-            type: 'ADM',
+            course: 'ADM',
             subjects:
             [
                 //1º semestre
