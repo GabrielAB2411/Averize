@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Home from '../pages/home'
-import Grades from '../pages/grades'
+import Home from '../pages/home';
+import Courses from '../pages/courses';
+import Grades from '../pages/grades';
 import Semesters from '../pages/semesters';
 import Ratings from '../pages/ratings';
 import Averages from '../pages/averages';
@@ -11,6 +12,7 @@ export function StackNavigationRoutes() {
     return (
         <Navigator screenOptions={{ headerShown: false }}>
             <Screen name='home' component={Home} />
+            <Screen name='courses' component={Courses} />
             <Screen name='semesters' component={Semesters} />
             <Screen name='grades' component={Grades} />
             <Screen name='ratings' component={Ratings} />

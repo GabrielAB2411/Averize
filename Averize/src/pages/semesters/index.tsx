@@ -8,9 +8,8 @@ type RouteProps = RouteProp<StackParamList, 'semesters'>
 
 export default function Semesters() {
     const route = useRoute<RouteProps>()
-    const { type } = route.params
-    const { semesters, nextPage } = useSemestersScreen(type)
-
+    const { type, newOldId } = route.params
+    const { semesters, nextPage } = useSemestersScreen(type, newOldId)
     return (
         <Box
             backgroundColor={'white'}
@@ -28,7 +27,7 @@ export default function Semesters() {
                         <ListItem
                             item={item}
                             onClick={() => nextPage(item)}
-                        />
+                        /> 
                     }
                     keyExtractor={item => item.id}
                 />

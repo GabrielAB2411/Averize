@@ -8,8 +8,8 @@ type RouteProps = RouteProp<StackParamList, 'grades'>
 
 export default function Grades() {
     const route = useRoute<RouteProps>()
-    const { course, semesterId, semester } = route.params
-    const { filteredSubjectBySemesterId, nextPage } = useGradesScreen(course, semesterId)
+    const { course, semesterId, semester, newOldId } = route.params
+    const { filteredSubjectBySemesterId, nextPage } = useGradesScreen(course, semesterId, newOldId)
 
     return (
         <Box

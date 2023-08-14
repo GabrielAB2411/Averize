@@ -1,12 +1,17 @@
 export type StackParamList = {
     home: undefined,
+    courses: {
+        newOldId: any
+    },
+    semesters: {
+        type: string,
+        newOldId: any
+    },
     grades: {
         course: string,
         semester: string,
         semesterId: string,
-    },
-    semesters: {
-        type: string,
+        newOldId: any
     },
     ratings: {
         subject: string,
