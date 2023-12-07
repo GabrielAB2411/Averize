@@ -4,7 +4,7 @@ import { StackParamList } from '../types/StackNavigation';
 
 type NavigationProps = StackNavigationProp<StackParamList>
 
-export function useSemestersScreen(type: string) {
+export function useSemestersScreen(type: string, newOldId: any) {
     const navigation = useNavigation<NavigationProps>()
     const semestersCount = type === 'ADM' ? 8 : 10
     const semesters = []
@@ -15,12 +15,12 @@ export function useSemestersScreen(type: string) {
             id: String(i)
         })
     }
-
     function nextPage(data: any) {
         const course = {
             course: type,
             semester: data.name,
-            semesterId: data.id
+            semesterId: data.id,
+            newOldId: newOldId
         }
         navigation.navigate('grades', course)
     }
