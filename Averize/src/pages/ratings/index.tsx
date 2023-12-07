@@ -3,17 +3,19 @@ import { Box, Heading, Input, Text, HStack, IconButton, ArrowForwardIcon } from 
 import { StackParamList } from '../../types/StackNavigation'
 import { Controller, useForm } from 'react-hook-form'
 import { useRatingsScreen } from '../../hooks/useRatingsScreen'
-import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native'; 
-import React, { useState } from 'react';
+import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type RouteProps = RouteProp<StackParamList, 'ratings'>
 
 export default function Ratings() {
     const route = useRoute<RouteProps>()
     const { subject } = route.params
-    const { control, handleSubmit } = useForm()
+    const { control, handleSubmit, setValue, getValues } = useForm()
+
     const { calculateM1, calculateM2, calculateMF, nextPage } = useRatingsScreen()
-    
+
     const [inputStatus, setInputStatus] = useState({
         FBN1: 'default',
         FBN2: 'default',
@@ -21,6 +23,24 @@ export default function Ratings() {
         SBN2: 'default',
         AF: 'default',
     });
+
+    useEffect(() => {
+        // Recuperar as notas do AsyncStorage quando o componente for montado
+        AsyncStorage.getItem(`notas_${subject}`)
+            .then((storedNotas) => {
+                if (storedNotas) {
+                    const parsedNotas = JSON.parse(storedNotas);
+
+                    // Preencher os campos de entrada com as notas recuperadas
+                    Object.keys(parsedNotas).forEach((fieldName) => {
+                        setValue(fieldName, parsedNotas[fieldName]);
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error('Erro ao recuperar as notas: ', error);
+            });
+    }, []);
 
     const handleRatingsInput = (fieldName: string, value: string) => {
         let numericValue = parseFloat(value);
@@ -44,8 +64,16 @@ export default function Ratings() {
             M1: M1.toPrecision(2),
             M2: M2.toPrecision(2),
             MF: MF.toPrecision(2),
-        }
-        nextPage(averages)
+        };
+
+        // Salvar as notas no AsyncStorage
+        AsyncStorage.setItem(`notas_${subject}`, JSON.stringify(data))
+            .then(() => {
+                nextPage(averages);
+            })
+            .catch((error) => {
+                console.error('Erro ao salvar as notas: ', error);
+            });
     }
 
     return (
@@ -72,10 +100,10 @@ export default function Ratings() {
                                     maxLength={4}
                                     onChangeText={(text) => {
                                         const sanitizedText = text.replace(',', '.');
+                                        setValue('FBN1', sanitizedText);
                                         handleRatingsInput('FBN1', sanitizedText);
-                                        onChange(sanitizedText);
                                     }}
-                                    value={value}
+                                    value={getValues('FBN1')}
                                     bgColor={inputStatus.FBN1 === 'invalid' ? 'red.50' : (inputStatus.FBN1 === 'valid' ? 'blue.50' : 'white')}
                                     borderColor={inputStatus.FBN1 === 'invalid' ? 'red.500' : (inputStatus.FBN1 === 'valid' ? 'blue.500' : 'black')}
                                 />
@@ -88,10 +116,10 @@ export default function Ratings() {
                                     maxLength={4}
                                     onChangeText={(text) => {
                                         const sanitizedText = text.replace(',', '.');
+                                        setValue('FBN2', sanitizedText);
                                         handleRatingsInput('FBN2', sanitizedText);
-                                        onChange(sanitizedText);
                                     }}
-                                    value={value}
+                                    value={getValues('FBN2')}
                                     bgColor={inputStatus.FBN2 === 'invalid' ? 'red.50' : (inputStatus.FBN2 === 'valid' ? 'blue.50' : 'white')}
                                     borderColor={inputStatus.FBN2 === 'invalid' ? 'red.500' : (inputStatus.FBN2 === 'valid' ? 'blue.500' : 'black')}
                                 />
@@ -107,10 +135,10 @@ export default function Ratings() {
                                     maxLength={4}
                                     onChangeText={(text) => {
                                         const sanitizedText = text.replace(',', '.');
+                                        setValue('SBN1', sanitizedText);
                                         handleRatingsInput('SBN1', sanitizedText);
-                                        onChange(sanitizedText);
                                     }}
-                                    value={value}
+                                    value={getValues('SBN1')}
                                     bgColor={inputStatus.SBN1 === 'invalid' ? 'red.50' : (inputStatus.SBN1 === 'valid' ? 'blue.50' : 'white')}
                                     borderColor={inputStatus.SBN1 === 'invalid' ? 'red.500' : (inputStatus.SBN1 === 'valid' ? 'blue.500' : 'black')}
                                 />
@@ -123,10 +151,10 @@ export default function Ratings() {
                                     maxLength={4}
                                     onChangeText={(text) => {
                                         const sanitizedText = text.replace(',', '.');
+                                        setValue('SBN2', sanitizedText);
                                         handleRatingsInput('SBN2', sanitizedText);
-                                        onChange(sanitizedText);
                                     }}
-                                    value={value}
+                                    value={getValues('SBN2')}
                                     bgColor={inputStatus.SBN2 === 'invalid' ? 'red.50' : (inputStatus.SBN2 === 'valid' ? 'blue.50' : 'white')}
                                     borderColor={inputStatus.SBN2 === 'invalid' ? 'red.500' : (inputStatus.SBN2 === 'valid' ? 'blue.500' : 'black')}
                                 />
@@ -139,18 +167,18 @@ export default function Ratings() {
                                     maxLength={4}
                                     onChangeText={(text) => {
                                         const sanitizedText = text.replace(',', '.');
+                                        setValue('AF', sanitizedText);
                                         handleRatingsInput('AF', sanitizedText);
-                                        onChange(sanitizedText);
                                     }}
-                                    value={value}
+                                    value={getValues('AF')}
                                     bgColor={inputStatus.AF === 'invalid' ? 'red.50' : (inputStatus.AF === 'valid' ? 'blue.50' : 'white')}
                                     borderColor={inputStatus.AF === 'invalid' ? 'red.500' : (inputStatus.AF === 'valid' ? 'blue.500' : 'black')}
                                 />
                             )} />
                         </HStack>
                         {Object.values(inputStatus).some((status) => status === 'invalid') && (
-                            <Text color={'red.500'}>Acho difícil tirar mais que 10 em. Bora revisar essas notas ai</Text>
-                        )} {}
+                            <Text color={'red.500'}>Acho difícil tirar mais que 10 em. Bora revisar essas notas aí!</Text>
+                        )}
                         <Box alignItems={'flex-end'}>
                             <IconButton
                                 icon={<ArrowForwardIcon />}
