@@ -19,7 +19,8 @@ export default function Semesters() {
         >
             <Box width={'2/3'}>
                 <Heading fontSize={'2xl'} marginBottom={5} textAlign={'center'}>
-                    Qual semestre de {type}?
+                    {/* Qual semestre de {type}? */}
+                    Vai efetivar sim (pateta)
                 </Heading>
                 <FlatList
                     data={semesters}
