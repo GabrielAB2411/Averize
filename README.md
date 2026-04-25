@@ -1,25 +1,51 @@
-
 # 📱 Averize
 
-O **Averize** é um aplicativo desenvolvido em **React Native** para auxiliar os estudantes da **Faculdade Engenheiro Salvador Arena** no cálculo de notas e médias acadêmicas de forma rápida, prática e precisa.
+**Averize** is a **React Native** application created to help students from **Engenheiro Salvador Arena College** calculate grades and academic averages quickly, easily, and accurately.
 
-Como os métodos de cálculo de média podem ser mais detalhados e trabalhosos de realizar manualmente, o app foi criado para simplificar esse processo e facilitar a rotina dos alunos.
+Since the grading system calculations can be detailed and time-consuming when done manually, the app was designed to simplify this process and make students' academic routine easier.
 
-## 🚀 Funcionalidades
+## 🚀 Features
 
-- Cálculo automático de médias  
-- Organização por disciplinas  
-- Interface simples e intuitiva  
-- Compatível com Android e iOS  
+- Automatic grade average calculation  
+- Required grade simulation for approval  
+- Subject organization  
+- Simple and intuitive interface  
+- Available for Android and iOS  
 
-## 🛠️ Tecnologias
+## 🛠️ Technologies
 
 - React Native  
+- JavaScript  
 
-## 🎯 Objetivo
+## 🎯 Purpose
 
-Facilitar o acompanhamento do desempenho acadêmico dos alunos da instituição, economizando tempo e evitando erros nos cálculos.
+To help students track their academic performance, save time, and avoid calculation errors.
 
 ## 🔒 Status
 
-Projeto em desenvolvimento.
+Project under development.# 📱 Averize
+
+**Averize** is a **React Native** application created to help students from **Engenheiro Salvador Arena College** calculate grades and academic averages quickly, easily, and accurately.
+
+Since the grading system calculations can be detailed and time-consuming when done manually, the app was designed to simplify this process and make students' academic routine easier.
+
+## 🚀 Features
+
+- Automatic grade average calculation  
+- Required grade simulation for approval  
+- Subject organization  
+- Simple and intuitive interface  
+- Available for Android and iOS  
+
+## 🛠️ Technologies
+
+- React Native  
+- JavaScript  
+
+## 🎯 Purpose
+
+To help students track their academic performance, save time, and avoid calculation errors.
+
+## 🔒 Status
+
+Project under development.
