@@ -15,7 +15,6 @@ Como os métodos de cálculo de média podem ser mais detalhados e trabalhosos d
 ## 🛠️ Tecnologias
 
 - React Native  
-- JavaScript  
 
 ## 🎯 Objetivo
 
